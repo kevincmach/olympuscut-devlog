@@ -686,10 +686,11 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
 
   <div class="databox">
     <h3>THE RHYTHM OF THE JAM</h3>
-    <p>104 commits, hour by hour. The gaps are real: dinner and evening iPhone testing on Thursday, sleep on Friday night, and the 2–4&nbsp;AM Saturday art push before the Fold build.</p>
+    <p>126 commits, hour by hour, one shared scale. The gaps are real: dinner and evening iPhone testing on Thursday, a full night's sleep on Friday, the 2–4&nbsp;AM Saturday art push before the Fold build — and the Sunday overnight run that shipped Survival mode.</p>
     <div class="rhythm" data-day="THU 12" data-hours="0,0,0,0,0,0,0,0,0,0,0,3,13,9,2,7,5,0,0,0,0,5,4,2"></div>
     <div class="rhythm" data-day="FRI 13" data-hours="4,0,0,0,0,0,0,0,0,0,2,0,0,1,1,3,0,0,1,1,6,0,2,1"></div>
-    <div class="rhythm" data-day="SAT 14" data-hours="4,1,2,0,2,0,0,0,2,5,2,1,2,0,4,2,3,1,0,0,0,0,0,0"></div>
+    <div class="rhythm" data-day="SAT 14" data-hours="4,1,2,0,2,0,0,0,2,5,2,1,2,0,4,2,6,1,0,1,0,1,1,1"></div>
+    <div class="rhythm" data-day="SUN 15" data-hours="0,2,4,0,0,0,0,1,2,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0"></div>
     <div class="rhythm"><div class="day"></div><div class="hours"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>12</span><span>14</span><span>16</span><span>18</span><span>20</span><span>22</span></div></div>
   </div>
 
@@ -862,18 +863,23 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
       });
     });
   });
-  // commit rhythm bars (data → divs)
-  [].slice.call(document.querySelectorAll('.rhythm[data-hours]')).forEach(function(ry){
+  // commit rhythm bars (data → divs); one global max so days are comparable
+  var rys=[].slice.call(document.querySelectorAll('.rhythm[data-hours]'));
+  var gmax=1;
+  rys.forEach(function(ry){
+    ry.getAttribute('data-hours').split(',').map(Number).forEach(function(n){if(n>gmax)gmax=n});
+  });
+  rys.forEach(function(ry){
     var hours=ry.getAttribute('data-hours').split(',').map(Number);
-    var max=Math.max.apply(null,hours);
+    var d=document.createElement('div');d.className='day';d.textContent=ry.getAttribute('data-day');
     var bars=document.createElement('div');bars.className='bars';
     hours.forEach(function(n){
       var i=document.createElement('i');
       if(n===0){i.className='zero';i.style.height='2px'}
-      else{i.style.height=Math.max(6,Math.round(n/max*52))+'px';i.title=n+' commits'}
+      else{i.style.height=Math.max(6,Math.round(n/gmax*52))+'px';i.title=n+' commits'}
       bars.appendChild(i);
     });
-    ry.appendChild(bars);
+    ry.appendChild(d);ry.appendChild(bars);
   });
   // print: open all deep dives, show all rows
   var saved=[];
