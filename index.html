@@ -93,6 +93,7 @@ figure.clip figcaption{font-size:13.5px;color:#C9D6DF;padding:8px 10px;font-styl
 .act.a2 .act-head{background:linear-gradient(90deg,#2E3A57,#46557E)}
 .act.a3 .act-head{background:linear-gradient(90deg,#3C4F45,#5E7566)}
 .act.a4 .act-head{background:linear-gradient(90deg,var(--storm-deep),var(--storm))}
+.act.a5 .act-head{background:linear-gradient(90deg,#2B2540,#6A5A3A)}
 .act-body{padding:20px 22px 8px;display:grid;grid-template-columns:1.6fr 1fr;gap:22px}
 .act-body p{margin:0 0 14px;font-size:16.5px}
 .act-side{display:flex;flex-direction:column;gap:14px}
@@ -230,6 +231,7 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
 <nav class="doc">
   <a href="#stats">Numbers</a>
   <a href="#game">The game</a>
+  <a href="#trailer">Trailer</a>
   <a href="#journey">The journey</a>
   <a href="#forensics">Forensics</a>
   <a href="#built">How it was built</a>
@@ -243,12 +245,12 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
 <section id="stats">
   <div class="stats">
     <div class="stat"><div class="num">4</div><div class="lbl">build days</div></div>
-    <div class="stat"><div class="num">104</div><div class="lbl">commits</div></div>
-    <div class="stat"><div class="num">40</div><div class="lbl">logged steps</div></div>
-    <div class="stat"><div class="num">41</div><div class="lbl">screenshots</div></div>
-    <div class="stat"><div class="num">2,000</div><div class="lbl">sim runs per balance policy</div></div>
+    <div class="stat"><div class="num">126</div><div class="lbl">commits</div></div>
+    <div class="stat"><div class="num">50</div><div class="lbl">logged steps</div></div>
+    <div class="stat"><div class="num">70</div><div class="lbl">screenshots</div></div>
+    <div class="stat"><div class="num">60<span style="font-size:17px">s</span></div><div class="lbl">beat-mapped trailer</div></div>
     <div class="stat"><div class="num">3</div><div class="lbl">playtest devices</div></div>
-    <div class="stat"><div class="num">207<span style="font-size:17px">MB</span></div><div class="lbl">Android APK</div></div>
+    <div class="stat"><div class="num">206<span style="font-size:17px">MB</span></div><div class="lbl">Android APK</div></div>
   </div>
 </section>
 
@@ -292,10 +294,24 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
 
 <div class="meander dim"></div>
 
+<!-- ══════════ THE TRAILER ══════════ -->
+<section id="trailer">
+  <h2 class="sec">The trailer</h2>
+  <p class="sec-sub">60 seconds, cut on a 128 BPM grid — real gameplay inside the first five, exactly as the jam's tips ask</p>
+  <figure class="clip" style="max-width:860px;margin:0 auto">
+    <video controls preload="none" poster="https://kevincmach.github.io/olympuscut-devlog/trailer-poster.jpg"><source src="https://kevincmach.github.io/olympuscut-devlog/trailer.mp4" type="video/mp4"></video>
+    <img class="poster" src="https://kevincmach.github.io/olympuscut-devlog/trailer-poster.jpg" alt="Trailer poster frame">
+    <figcaption>The submission video — a filmed cold open on Kevin's hands, a match-cut into a clean recording, then the run</figcaption>
+  </figure>
+  <p class="lede" style="margin-top:24px">The edit was a pipeline of its own: a storyboard, shot list and captions written as briefs; 2.2&nbsp;GB of clean iPhone recordings captured with the in-game recording mode built overnight for exactly this; a score — <em>Titan at the Gates</em> — composed in Gemini/Lyria from a structured prompt; librosa beat analysis finding 128&nbsp;BPM with the first hit at 0.924&nbsp;s, the track offset so that hit lands on frame 0; then every cut placed on the beat grid and rendered at 1080p30 in Remotion. The whole recipe, including a reusable skill, lives in the repo's <em>trailer/</em>.</p>
+</section>
+
+<div class="meander dim"></div>
+
 <!-- ══════════ THE JOURNEY ══════════ -->
 <section id="journey">
   <h2 class="sec">The journey</h2>
-  <p class="sec-sub">the jam, told the way the game plays it — three acts and an epilogue · deep dives open on click</p>
+  <p class="sec-sub">the jam, told the way the game plays it — three acts, an overnight run, and an epilogue · deep dives open on click</p>
 
   <!-- ACT I -->
   <article class="act a1">
@@ -469,6 +485,39 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
     </div>
   </article>
 
+  <!-- ACT IV -->
+  <article class="act a5">
+    <div class="act-head"><span class="t">ACT IV — THE OVERNIGHT RUN</span><span class="span">Sat 18:10 – Sun 13:05 · pre-dawn</span></div>
+    <div class="act-body">
+      <div>
+        <p>The game was “done” at Saturday's feature freeze. It didn't stay done. At 18:10 every gameplay warning that had been drawn with debug lines graduated to a textured ground plane — red danger filling from the centre, a white flash just before the hit — the last reason the build needed its debug layer, gone. At 22:43 the Character Build v2 screen arrived: seven live stat rows, an EPITHETS grid, progression you can read at a glance.</p>
+        <p>Then the overnight runs. Survival mode and Act Select appeared at 01:50 — endless 30-second waves with ramping spawns, the Cyclops every fifth wave, a gold Great Ram mini-boss — verified end-to-end in PIE by 02:45, alongside a dev recording mode (F9) to capture clean trailer footage without the HUD. Sunday morning was a device-fix sprint: menu taps that read a mouse fallback on a lifted finger (fixed by remembering the last touch point), hit-tests offset by the Fold's camera safe zone (Step 42, below), dev UI hidden from phone builds, a pause that died after a Survival Cyclops kill, and the act banner returning inside the Cyclops fight. Each one found on a phone, fixed, re-tested on a phone.</p>
+        <p>And then the cut: a Remotion trailer storyboarded, shot-listed and captioned, re-cut onto the beat grid of a score composed in Gemini/Lyria — 128 BPM, first hit at 0.924&nbsp;s, the track offset so that hit lands on frame 0. Approved at 13:05.</p>
+        <div class="deepdives">
+          <details class="dd">
+            <summary>Telegraphs graduate from debug lines to textures<span class="step">Step 37 · Sat 18:10</span></summary>
+            <div class="dd-body">
+              <p>Every gameplay DrawDebug warning became a textured ground plane built from the existing VFX PNGs — red for danger, gold for Zeus. <code>M_TelegraphUnlit</code> gained Fill / Shape / Flash parameters: slams fill from the centre with a solid rim and one white flash just before the hit. The readability rule from Step 23 carried over unchanged: danger is still only red.</p>
+              <p>This quietly closed the chapter the Epilogue opened — the build had been kept in Development because the telegraphs drew with the debug layer. Now they don't.</p>
+            </div>
+          </details>
+          <details class="dd">
+            <summary>Survival mode, and a recording mode to feed the trailer<span class="step">Steps 39–41 · overnight</span></summary>
+            <div class="dd-body">
+              <p>Survival is endless 30&nbsp;s waves in the Act 1 arena with ramping spawns, a live cap, dashers and rising sheep HP; the Cyclops arrives every fifth wave; the gold Great Ram is a pooled-telegraph mini-boss. Best wave saves only on death — no save-scumming a leaderboard. Act Select puts ACT I/II/III behind one tap, and the title's “?” moved to a proper How to Play.</p>
+              <p>For the trailer, Step 40 added a dev-only recording mode (F9 or a Pause-menu toggle) that hides the HUD and keeps controls live, plus an F8 that ends the act or kills the Cyclops on demand — 2.2&nbsp;GB of clean iPhone footage came out of it.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="act-side">
+        <div class="chips"><span class="chip">real telegraphs</span><span class="chip">Character Build v2</span><span class="chip">Survival + Act Select</span><span class="chip">safe-zone hit-test fix</span><span class="chip">60 s trailer</span></div>
+        <div class="note">“Looks great … ready for submission.”<span class="who">Kevin, approving the final cut, 13:05 Sunday</span></div>
+        <figure class="act-shot"><img src="shots/2026-11-15_0245_step40-survival-wave.png" alt="Survival mode wave"><figcaption>Survival mode — wave pressure in the Act 1 arena (Steps 39–40)</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
   <!-- EPILOGUE -->
   <article class="act a4">
     <div class="act-head"><span class="t">EPILOGUE — SHIP TO HARDWARE</span><span class="span">Sat Nov 14 · 12:15–17:15 · on the Z Fold 7</span></div>
@@ -541,11 +590,11 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
       </div>
     </div>
     <div class="fx">
-      <header>THE BANNER THAT TIME FORGOT<span class="symptom">“The act 1 shepherd title comes up again” at the temple.</span></header>
+      <header>THE BUTTONS THAT MOVED LEFT<span class="symptom">“Attack works but dash, bolt and wrath don't trigger.” — Fold 7, cover screen</span></header>
       <div class="fx-body">
-        <p><b>Cause:</b> the act start stamp lives on the GameInstance and survives level travel — but each level's real-time clock restarts at zero. In the temple, <code>now − ActStart</code> went <em>negative</em>, and “negative &lt; 2.4&nbsp;s” read as “just started.”</p>
-        <p><b>Fix:</b> the banner now also requires elapsed ≥ 0. A start stamped by an earlier level's clock is ignored.</p>
-        <p class="proof">Proof: found on the Fold, fixed, re-verified on the Fold the same hour — “yea the banner is fixed.”</p>
+        <p><b>Cause:</b> Android reports the camera hole as a ~4% safe zone; the HUD canvas is shifted to clear it, but touch coordinates arrive in raw viewport pixels. Every hit circle sat ~100&nbsp;px <b>left</b> of its drawn button. ATTACK's 148&nbsp;px radius still caught a centred press — the 94&nbsp;px buttons never did. The inner screen has no cutout, so it only broke folded.</p>
+        <p><b>Fix:</b> <code>SafeShift</code> measures the canvas shift every frame and subtracts it from every touch — 80 consumers re-routed in one pass.</p>
+        <p class="proof">Proof, on-device: an injected touch 100&nbsp;px left of the BOLT art logged “[Bolt] thrown”; after the fix, taps on the drawn art land.</p>
       </div>
     </div>
   </div>
@@ -565,6 +614,7 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
     <tr><td>Claude Code (Opus 5.5)</td><td>Steps 18–36: the feel pass, story shell, the hunt, combat depth, art integration, the Android pipeline. All 3D models and 13 animations built in Blender through build scripts it extended live.</td></tr>
     <tr><td>Cursor</td><td>A headless TypeScript balance simulation — boss HP, attack periods and player damage tuned from 2,000-run simulations per policy, not vibes.</td></tr>
     <tr><td>Grok Imagine (xAI)</td><td>2D art direction: the 99-texture HUD kit in three skins, menu art, branding and the app icon.</td></tr>
+    <tr><td>Trailer crew</td><td>The 60-second cut: storyboard, shot list and captions authored as briefs; edited in Remotion with every cut on a 128&nbsp;BPM grid (librosa beat analysis); score “Titan at the Gates” composed in Gemini/Lyria from a structured prompt. Approved by Kevin at 13:05 on submission day.</td></tr>
   </table>
 
   <figure class="pipeline">
@@ -729,6 +779,21 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
     <tr data-tool="opus"><td class="time">17:15</td><td>Eye-strike kill reads “BLINDED / THE GIANT FALLS”; slice merged to main</td><td class="tool"><span class="opus">Opus 5.5</span></td><td class="shot"></td></tr>
     </tbody>
   </table>
+
+  <div class="day-head">DAY 4 · SUN NOV 15 <small>— the overnight run and the cut (the final 24 hours)</small></div>
+  <table class="tl">
+    <tbody>
+    <tr data-tool="opus"><td class="time">01:50</td><td>Survival mode + Act Select: endless 30 s waves, Cyclops every 5th, gold Great Ram</td><td class="tool"><span class="opus">Opus 5.5</span></td><td class="shot"><a href="shots/2026-11-15_0245_step40-survival-wave.png"><img src="shots/2026-11-15_0245_step40-survival-wave.png" alt=""></a></td></tr>
+    <tr data-tool="opus"><td class="time">02:45</td><td>Overnight verify in PIE; dev recording mode (F9) and F8 boss jump for trailer footage</td><td class="tool"><span class="opus">Opus 5.5</span></td><td class="shot"><a href="shots/2026-11-15_0245_step40-title.png"><img src="shots/2026-11-15_0245_step40-title.png" alt=""></a></td></tr>
+    <tr data-tool="opus"><td class="time">08:05</td><td>Dev Survival start-wave picker; controls keep working while recording (Step 41)</td><td class="tool"><span class="opus">Opus 5.5</span><span class="hw">▸</span></td><td class="shot"></td></tr>
+    <tr data-tool="opus"><td class="time">09:01</td><td>Safe-zone hit-test fix: taps landed ~100 px left of the drawn buttons on the Fold (Step 42)</td><td class="tool"><span class="opus">Opus 5.5</span><span class="hw">▸</span></td><td class="shot"><a href="shots/2026-11-15_0245_step40-build-screen.png"><img src="shots/2026-11-15_0245_step40-build-screen.png" alt=""></a></td></tr>
+    <tr data-tool="opus"><td class="time">10:18</td><td>Dev UI hidden from phone builds (Step 43)</td><td class="tool"><span class="opus">Opus 5.5</span></td><td class="shot"></td></tr>
+    <tr data-tool="opus"><td class="time">11:21</td><td>Pause fixed after a Survival Cyclops kill; recording damage assist (Step 44)</td><td class="tool"><span class="opus">Opus 5.5</span></td><td class="shot"></td></tr>
+    <tr data-tool="opus"><td class="time">12:04</td><td>Act banner no longer returns inside the Cyclops fight (Step 45)</td><td class="tool"><span class="opus">Opus 5.5</span></td><td class="shot"></td></tr>
+    <tr data-tool="opus"><td class="time">12:58</td><td>Trailer re-cut to “Titan at the Gates” — every cut on the 128 BPM grid</td><td class="tool"><span class="opus">Opus 5.5</span></td><td class="shot"><a href="shots/2026-11-15_1224_remotion-f0045_caption-zeus-vs-cyclops.png"><img src="shots/2026-11-15_1224_remotion-f0045_caption-zeus-vs-cyclops.png" alt=""></a></td></tr>
+    <tr data-tool="opus"><td class="time">13:05</td><td>Final render approved: 1080p30, 60.000 s, −11.6 LUFS — “ready for submission”</td><td class="tool"><span class="opus">Opus 5.5</span><span class="hw">▸</span></td><td class="shot"><a href="shots/2026-11-15_1224_remotion-f1519_kill-flash-on-50.625s.png"><img src="shots/2026-11-15_1224_remotion-f1519_kill-flash-on-50.625s.png" alt=""></a></td></tr>
+    </tbody>
+  </table>
 </section>
 
 <div class="meander dim"></div>
@@ -749,6 +814,7 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
   <h3>Third-party</h3>
   <ul>
     <li>Score cues — VSCO2 Production Library (CC0), edited and crossfaded in-engine.</li>
+    <li>Trailer score “Titan at the Gates” — Google Gemini (Lyria), composed from a structured prompt, beat-mapped at 128&nbsp;BPM.</li>
     <li>Fonts — Cinzel &amp; EB Garamond, SIL Open Font License via Google Fonts.</li>
   </ul>
 
@@ -767,8 +833,8 @@ footer .fine{font-style:italic;margin-top:10px;color:#7E8EA0}
 
 <div class="meander"></div>
 <footer>
-  <div>OLYMPUS CUT · Epic AI MegaJam 2026 devlog · generated November 14, 2026 from <em>docs/devlog/TIMELINE.md</em> and <em>docs/CHANGELOG.md</em> — every entry maps to a commit.</div>
-  <div class="fine">Gameplay video: [add link] · Play the build: [add itch link] · Repo: private during judging</div>
+  <div>OLYMPUS CUT · Epic AI MegaJam 2026 devlog · generated November 15, 2026 from <em>docs/devlog/TIMELINE.md</em> and <em>docs/CHANGELOG.md</em> — every entry maps to a commit.</div>
+  <div class="fine">Gameplay video: <a href="https://kevincmach.github.io/olympuscut-devlog/trailer.mp4">the 60 s trailer</a> · Play the build: [itch link at submission] · Repo: private during judging</div>
 </footer>
 
 <script>
